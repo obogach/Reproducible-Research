@@ -68,7 +68,9 @@ plot(x    = set2$interval,
 ```r
 # Which 5-minute interval, on average across all the days in the dataset, 
 # contains the maximum number of steps?
-cat(sprintf("Maximum number of steps within 5-minute interval across all the days in the dataset=%d\n", set2$interval[set2$V1 == max(set2$V1)]))
+cat(sprintf(paste("Maximum number of steps within 5-minute interval across",
+                  "all the days in the dataset=%d\n"), 
+            set2$interval[set2$V1 == max(set2$V1)]))
 ```
 
 ```
@@ -124,9 +126,12 @@ mean.diff <- mean.set1 - mean.set3
 median.diff <- median.set1 - median.set3
 
 if (mean.diff == 0) {
-  cat(sprintf("Mean value is the same as it was for the data set with ignored NA values\n"))
+  cat(sprintf(paste("Mean value is the same as it was",
+                    "for the data set with ignored NA values\n")))
 } else {
-  cat(sprintf("Mean value is different from data set with ignored NA values. Relative difference, percent: %f\n", mean.set1/mean.set3*100))
+  cat(sprintf(paste("Mean value is different from data set with ignored",
+                    "NA values. Relative difference, percent: %f\n"), 
+              (1-mean.set1/mean.set3)*100))
 }
 ```
 
@@ -136,9 +141,12 @@ if (mean.diff == 0) {
 
 ```r
 if (median.diff == 0) {
-  cat(sprintf("Median value is the same as it was for the data set with ignored NA values\n"))
+  cat(sprintf(paste("Median value is the same as it was",
+                    "for the data set with ignored NA values\n")))
 } else {
-  cat(sprintf("Median value is different from data set with ignored NA values. Relative difference, percent: %f\n", (1 - median.set1/median.set3)*100))
+  cat(sprintf(paste("Median value is different from data set with ignored",
+                    "NA values. Relative difference, percent: %f\n"), 
+              (1 - median.set1/median.set3)*100))
 }
 ```
 
@@ -151,7 +159,9 @@ if (median.diff == 0) {
 # daily number of steps?
 set4 <- merge(x = set1, y = set3, by = "date", all.y = TRUE, sort = TRUE)
 sum.diff <- sum(set4$V1.x, na.rm = TRUE) - sum(set4$V1.y)
-cat(sprintf("In the result of the missing data impute, day-to-day sum of avarage steps taken %s on: %f\n", ifelse(sum.diff < 0, "raised", "decreased"), abs(sum.diff)))
+cat(sprintf(paste("In the result of the missing data impute, day-to-day",
+                  "sum of avarage steps taken %s on: %f\n"), 
+            ifelse(sum.diff < 0, "raised", "decreased"), abs(sum.diff)))
 ```
 
 ```
